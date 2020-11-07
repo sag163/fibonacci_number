@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from .forms import FibForm
 from django.shortcuts import get_object_or_404, redirect
@@ -28,12 +30,11 @@ def fibonachi(number):
 
 
 def index(request):
-    number = 15
-    number = int(request.POST.get("number_input"))
     fib_form = FibForm(request.POST or None)
-    if number < 0:
-        return HttpResponse("Число должно быть положительным")
     if request.method == "POST":
+        number = int(request.POST.dict()['number_input'])
+        if number < 0:
+            return HttpResponse("Число должно быть положительным")
         fibonachi_number = fibonachi(number)
         if fib_form.is_valid():
             fib = fib_form.save(commit=False)
