@@ -7,7 +7,7 @@
     python3 -m venv venv
 
 2. Активировать виртуальное окружение:
-    source vevn/bin/activate
+    source venv/bin/activate
 
 3. Установить Джанго:
     pip install -r requirements.txt
